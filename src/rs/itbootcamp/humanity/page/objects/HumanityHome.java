@@ -17,7 +17,7 @@ public class HumanityHome {
 	private static final String WORKEMAIL = "//div[@class='input-wrapper']//input[@placeholder='Work Email']";
 	private static final String FREETRIALDOWN = "//div[@class='input-wrapper']//input[@placeholder='Work Email']";
 	public static final String LOGIN_URL = "https://www.humanity.com/app/";
-	// Stranica login
+	// Login page
 	private static final String LOGIN_USERNAME = "//input[@id='email']";
 	private static final String LOGIN_PASSWORD = "//input[@id='password']";
 	private static final String LOGIN_BUTTON = "//button[contains(text(),'Log in')]";

@@ -1,22 +1,17 @@
 package rs.itbootcamp.humanity.page.tests;
 
-import org.testng.annotations.Test;
-import org.testng.Assert;
-import rs.itbootcamp.humanity.page.objects.HumanityHome;
-import rs.itbootcamp.humanity.page.objects.HumanityMenu;
-import rs.itbootcamp.humanity.page.objects.HumanityStaff;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-//Login-> Staff -> Add Employees -> Dodavanje novog zaposlenog
-//Takodje je potrebno proveriti da li je dodavanje zaposlenog bilo uspešno.
 
-public class HumanityAddNewEmployeeTestNG {
+import rs.itbootcamp.humanity.page.objects.HumanityHome;
+import rs.itbootcamp.humanity.page.objects.HumanityMenu;
+import rs.itbootcamp.humanity.page.objects.HumanityStaff;
 
-	@Test
-	public static void addEmployeeTestNG() throws InterruptedException {
+public class HumanityAddNewEmployeeTests {
+
+	public static void addEmployeeTest() {
 
 		// Postavka
 		System.setProperty("wedriver.driver.chromedriver", "chromedriver");
@@ -27,35 +22,33 @@ public class HumanityAddNewEmployeeTestNG {
 		// Otvaranje stranice
 		driver.get("https://www.humanity.com/");
 		try {
-			// Login
+			// Insert username
 			HumanityHome.clickLogIn(driver);
+			HumanityHome.getUsernameBox(driver);
 			HumanityHome.clickUsernameBox(driver);
 			HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
+			// InsertPassword
+			HumanityHome.getPasswordBox(driver);
 			HumanityHome.clickPasswordBox(driver);
 			HumanityHome.inputPassword(driver, "Sifra123");
+			// Click Login button
+			HumanityHome.getLoginButton(driver);
 			HumanityHome.clickLoginButton(driver);
 
 			// Open home page and then staff page
 			HumanityMenu.clickStaffButton(driver);
 
 			// Dodavanje zaposlenog
+			HumanityStaff.getAddEmployeeButton(driver);
 			HumanityStaff.clickAddEmployeeButton(driver);
 			HumanityStaff.clickFirstNameBox(driver);
 			HumanityStaff.inputFirstName(driver, "Zlatko");
 			HumanityStaff.clickLastNameBox(driver);
-			HumanityStaff.inputLastName(driver, "Despotovic");
+			HumanityStaff.inputLastName(driver, "Milojevic");
 			HumanityStaff.clickEmailBox(driver);
-			HumanityStaff.inputEmail(driver, "zlatkozlaja@gmail.com");
+			HumanityStaff.inputEmail(driver, "email@gmail.com");
 			HumanityStaff.clickSaveEmployeeButton(driver);
-			Thread.sleep(5);
-			System.out.println(driver.getCurrentUrl());
-			boolean employee = driver.getCurrentUrl()
-					.contains("https://babicazabica.humanity.com/app/staff/assignstaff&new");
-			Assert.assertTrue(employee);
-			System.out.println("Zaposleni uspesno dodat.");
-
-		} catch (AssertionError ae) {
-			Assert.fail();
+		} catch (Exception ae) {
 			System.out.println(ae.getMessage());
 		} finally {
 			driver.quit();
