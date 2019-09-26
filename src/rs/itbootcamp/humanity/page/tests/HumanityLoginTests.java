@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import rs.itbootcamp.humanity.page.objects.HumanityHome;
+import rs.itbootcamp.humanity.page.objects.HumanityStaff;
 
 public class HumanityLoginTests {
 	// Login->test if login is successful
@@ -13,13 +14,13 @@ public class HumanityLoginTests {
 	@SuppressWarnings("finally")
 	public static boolean loginTest() {
 
-		// Postavka
+		// Browser settings
 		System.setProperty("wedriver.driver.chromedriver", "chromedriver");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		try {
-			// Otvaranje stranice
+			// Open home page
 			driver.get("https://www.humanity.com/");
 			// Login
 			HumanityHome.clickLogIn(driver);
@@ -29,7 +30,6 @@ public class HumanityLoginTests {
 			HumanityHome.inputPassword(driver, "Sifra123");
 			HumanityHome.clickLoginButton(driver);
 			Thread.sleep(3000);
-
 			if (driver.getCurrentUrl().equals("https://kompanija57.humanity.com/app/dashboard/")) {
 				System.out.println("Login successful");
 				return true;
@@ -54,7 +54,7 @@ public class HumanityLoginTests {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-		// Otvaranje stranice
+		// Open home page
 		driver.get("https://www.humanity.com/");
 		// Login
 		HumanityHome.clickLogIn(driver);
@@ -65,14 +65,15 @@ public class HumanityLoginTests {
 		// Get data from excell
 		String email, password;
 		email = ExcelUtils.getDataAt(1, 0);
-		password = ExcelUtils.getDataAt(1, 0);
+		password = ExcelUtils.getDataAt(1, 1);
 		try {
-			// Input excell data and login
+			//Import excell data and login
 			HumanityHome.clickUsernameBox(driver);
 			HumanityHome.inputUsername(driver, email);
 			HumanityHome.clickPasswordBox(driver);
 			HumanityHome.inputPassword(driver, password);
 			HumanityHome.clickLoginButton(driver);
+			Thread.sleep(3000);
 			if (driver.getCurrentUrl().equals("https://kompanija57.humanity.com/app/dashboard/")) {
 				System.out.println("Login successful");
 				return true;

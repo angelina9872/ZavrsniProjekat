@@ -13,7 +13,7 @@ public class HumanityEditStaff {
 	private static final String EDITDETAILS_LINK = "//a[contains(text(),'Edit Details')]";
 	private static final String UPLOADPICTURE_BUTTON = "//input[@id='fileupload']";
 	private static final String NICKNAME_BOX = "//input[@id='nick_name']";
-
+	private static final String PICTURE_PATH="/home/angelina/Pictures/header-gulf-birds.jpg";
 	// Save employee
 	public static WebElement getSaveEmployeeButton(WebDriver driver) {
 		return driver.findElement(By.xpath(SAVEEMPLOYEE_BUTTON));
@@ -40,6 +40,10 @@ public class HumanityEditStaff {
 	public static void clickUploadPictureButton(WebDriver driver) {
 		getUploadPictureButton(driver).click();
 	}
+	public static WebElement uploadPicture(WebDriver driver) {
+		return driver.findElement(By.xpath(PICTURE_PATH));
+	}
+	
 
 	// Nickname box
 	public static WebElement getNicknameBox(WebDriver driver) {
@@ -53,4 +57,5 @@ public class HumanityEditStaff {
 	public static void inputNickname(WebDriver driver, String data) {
 		getNicknameBox(driver).sendKeys(data);
 	}
+	
 }

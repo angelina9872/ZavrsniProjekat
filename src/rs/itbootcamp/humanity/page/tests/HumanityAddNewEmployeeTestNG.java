@@ -18,39 +18,38 @@ public class HumanityAddNewEmployeeTestNG {
 	@Test
 	public static void addEmployeeTestNG() throws InterruptedException {
 
-		// Postavka
+		// Browser setup
 		System.setProperty("wedriver.driver.chromedriver", "chromedriver");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-		// Otvaranje stranice
+		// Open home page
 		driver.get("https://www.humanity.com/");
+		// Login
+		HumanityHome.clickLogIn(driver);
+		HumanityHome.clickUsernameBox(driver);
+		HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
+		HumanityHome.clickPasswordBox(driver);
+		HumanityHome.inputPassword(driver, "Sifra123");
+		HumanityHome.clickLoginButton(driver);
+		Thread.sleep(3000);
+		HumanityMenu.clickStaffButton(driver);
+
 		try {
-			// Login
-			HumanityHome.clickLogIn(driver);
-			HumanityHome.clickUsernameBox(driver);
-			HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
-			HumanityHome.clickPasswordBox(driver);
-			HumanityHome.inputPassword(driver, "Sifra123");
-			HumanityHome.clickLoginButton(driver);
-
-			// Open home page and then staff page
-			HumanityMenu.clickStaffButton(driver);
-
 			// Dodavanje zaposlenog
 			HumanityStaff.clickAddEmployeeButton(driver);
-			HumanityStaff.clickFirstNameBox(driver);
-			HumanityStaff.inputFirstName(driver, "Zlatko");
-			HumanityStaff.clickLastNameBox(driver);
-			HumanityStaff.inputLastName(driver, "Despotovic");
-			HumanityStaff.clickEmailBox(driver);
-			HumanityStaff.inputEmail(driver, "zlatkozlaja@gmail.com");
+			HumanityStaff.clickFirstNameBox(driver, 1);
+			HumanityStaff.inputFirstName(driver, "Zlatko", 1);
+			HumanityStaff.clickLastNameBox(driver, 1);
+			HumanityStaff.inputLastName(driver, "Despotovic", 1);
+			HumanityStaff.clickEmailBox(driver, 1);
+			HumanityStaff.inputEmail(driver, "zlatkozlaja@gmail.com", 1);
 			HumanityStaff.clickSaveEmployeeButton(driver);
-			Thread.sleep(5);
+			Thread.sleep(3000);
 			System.out.println(driver.getCurrentUrl());
 			boolean employee = driver.getCurrentUrl()
-					.contains("https://babicazabica.humanity.com/app/staff/assignstaff&new");
+					.contains("https://kompanija57.humanity.com/app/staff/assignstaff&new");
 			Assert.assertTrue(employee);
 			System.out.println("Zaposleni uspesno dodat.");
 

@@ -16,7 +16,7 @@ public class HumanityMenu {
 	private static final String TIMECLOCK_BUTTON = "//p[contains(text(),'Time Clock')]";
 	private static final String LEAVE_BUTTON = "//a[@id='sn_requests']//span[@class='primNavQtip__inner']";
 	private static final String TRAINING_BUTTON = "//p[contains(text(),'Training')]";
-	private static final String STAFF_BUTTON = "//p[contains(text(),'Staff')]";
+	private static final String STAFF_BUTTON = "//a[@id='sn_staff']//span[@class='primNavQtip__inner']";
 	private static final String PAYROLL_BUTTON = "//p[contains(text(),'Payroll')]";
 	private static final String REPORTS_BUTTON = "//a[@id='sn_reports']//span[@class='primNavQtip__inner']";
 	private static final String SETTINGS_BUTTON = "//i[@class='primNavQtip__icon icon-gear']";

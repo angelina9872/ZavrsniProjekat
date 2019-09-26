@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import rs.itbootcamp.humanity.page.objects.HumanityHome;
+import rs.itbootcamp.humanity.page.objects.HumanityStaff;
 
 public class HumanityLoginTestNG {
 
@@ -20,19 +21,14 @@ public class HumanityLoginTestNG {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		try {
-			// Otvaranje stranice
+			// Open home page
 			driver.get("https://www.humanity.com/");
-			// Insert username
+			// Login
 			HumanityHome.clickLogIn(driver);
-			HumanityHome.getUsernameBox(driver);
 			HumanityHome.clickUsernameBox(driver);
 			HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
-			// InsertPassword
-			HumanityHome.getPasswordBox(driver);
 			HumanityHome.clickPasswordBox(driver);
 			HumanityHome.inputPassword(driver, "Sifra123");
-			// Click Login button
-			HumanityHome.getLoginButton(driver);
 			HumanityHome.clickLoginButton(driver);
 			Thread.sleep(3000);
 			System.out.println(driver.getCurrentUrl());
@@ -40,7 +36,7 @@ public class HumanityLoginTestNG {
 			boolean login = driver.getCurrentUrl().contains("https://kompanija57.humanity.com/app/dashboard/");
 			Assert.assertTrue(login);
 			System.out.println("Login successful");
-			
+
 		} catch (Exception e) {
 			Assert.fail();
 			System.out.println("Login failed");

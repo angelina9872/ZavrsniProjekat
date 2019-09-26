@@ -3,15 +3,17 @@ package rs.itbootcamp.humanity.page.objects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class HumanityProfile {
 //	Napisati POM Objects klasu HumanityProfile koja omogucava da se barata sa podesavanjima profila. 
 //	Takodje omoguciti da s edohvati verzija aplikacije: 
 
 	// Xpathovi
+	public static final String PROFILESETTINGS_URL="https://babicazabica.humanity.com/app/staff/edit/5089486/";
 	private static final String ARROW_BUTTON = "//i[@class='icon icon-arrowFullDn j-arrowIconToAvatar navBottom__userArrow']";
 	private static final String PROFILE_LINK = "//a[contains(text(),'Profile')]";
-	private static final String SETTINGS_LINK = "//div[@class='userm userm-mainPage']//a[contains(text(),'Settings')]";
+	private static final String SETTINGS_LINK = "//body/table/tbody/tr/td/div/div[1]/a[2]";
 	private static final String AVAILABILITY_LINK = "//div[@class='userm userm-mainPage']//a[contains(text(),'Availability')]";
 	private static final String SIGNOUT_LINK = "//a[contains(text(),'Sign Out')]";
 	private static final String VERSION = "//div[@id='humanityAppVersion']";
@@ -21,11 +23,22 @@ public class HumanityProfile {
 		return driver.findElement(By.xpath(ARROW_BUTTON));
 	}
 
-	public static void clickAboutUs(WebDriver driver) {
+	public static void clickArrowButton(WebDriver driver) {
 		getArrowButton(driver).click();
 	}
+	//Profile options
+	public static Select getProfileOptions(WebDriver driver) {
+		return new Select(driver.findElement(By.xpath(ARROW_BUTTON)));
+	}
+//	public static void clickProfileOption(WebDriver driver) {
+//		((WebElement) getProfileOptions(driver)).click();
+//	}
 
-	// Profil link
+	public static void clickProfileOptions(WebDriver driver,String data) {
+		getProfileOptions(driver).selectByVisibleText(data);
+	}
+
+	// Profile link
 	public static WebElement getProfileLink(WebDriver driver) {
 		return driver.findElement(By.xpath(PROFILE_LINK));
 	}
