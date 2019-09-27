@@ -1,35 +1,24 @@
 package rs.itbootcamp.humanity.page.tests;
 
-import java.util.concurrent.TimeUnit;
 import rs.itbootcamp.humanity.utility.*;
+
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import rs.itbootcamp.humanity.page.objects.HumanityHome;
-import rs.itbootcamp.humanity.page.objects.HumanityStaff;
 
 public class HumanityLoginTests {
 	// Login->test if login is successful
 
 	@SuppressWarnings("finally")
 	public static boolean loginTest() {
-
-		// Browser settings
-		System.setProperty("wedriver.driver.chromedriver", "chromedriver");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		try {
-			// Open home page
-			driver.get("https://www.humanity.com/");
-			// Login
-			HumanityHome.clickLogIn(driver);
-			HumanityHome.clickUsernameBox(driver);
-			HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
-			HumanityHome.clickPasswordBox(driver);
-			HumanityHome.inputPassword(driver, "Sifra123");
-			HumanityHome.clickLoginButton(driver);
-			Thread.sleep(3000);
+			HumanityHome.login(driver);
 			if (driver.getCurrentUrl().equals("https://kompanija57.humanity.com/app/dashboard/")) {
 				System.out.println("Login successful");
 				return true;
@@ -48,16 +37,12 @@ public class HumanityLoginTests {
 
 ///// Method to login with data from Excell
 	@SuppressWarnings("finally")
-	public static boolean loginWithData() {
-		System.setProperty("wedriver.driver.chromedriver", "chromedriver");
+	public static boolean loginWithData() throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
-		// Open home page
-		driver.get("https://www.humanity.com/");
 		// Login
-		HumanityHome.clickLogIn(driver);
+		HumanityHome.login(driver);
 		// Set excell
 		String DATA_SOURCE = "Data.xls";
 		ExcelUtils.setExcell(DATA_SOURCE);
@@ -67,7 +52,7 @@ public class HumanityLoginTests {
 		email = ExcelUtils.getDataAt(1, 0);
 		password = ExcelUtils.getDataAt(1, 1);
 		try {
-			//Import excell data and login
+			// Import excell data and login
 			HumanityHome.clickUsernameBox(driver);
 			HumanityHome.inputUsername(driver, email);
 			HumanityHome.clickPasswordBox(driver);

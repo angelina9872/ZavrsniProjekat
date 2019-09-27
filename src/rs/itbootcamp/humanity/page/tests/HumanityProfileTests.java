@@ -12,27 +12,27 @@ import rs.itbootcamp.humanity.page.objects.HumanityProfile;
 public class HumanityProfileTests {
 
 	public static void editProfileTest() throws InterruptedException {
-		// Browser settings
-		System.setProperty("wedriver.driver.chromedriver", "chromedriver");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		// Open home page and login
-		driver.get("https://www.humanity.com/");
-		// Login
-		HumanityHome.clickLogIn(driver);
-		HumanityHome.clickUsernameBox(driver);
-		HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
-		HumanityHome.clickPasswordBox(driver);
-		HumanityHome.inputPassword(driver, "Sifra123");
-		HumanityHome.clickLoginButton(driver);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		HumanityHome.login(driver);
+		try {
+			HumanityProfile.clickArrowButton(driver);
+			Thread.sleep(3000);
+			HumanityProfile.clickProfileLink(driver);
+			HumanityEditStaff.clickEditDetailsLink(driver);
+			Thread.sleep(5000);
+			String picture = "/home/angelina/Pictures/sova.jpg";
+			HumanityEditStaff.inputProfilePicture(driver, picture);
+			Thread.sleep(3000);
+			HumanityEditStaff.clickNicknameBox(driver);
+			HumanityEditStaff.inputNickname(driver, "Niknejm");
+			HumanityEditStaff.clickSaveEmployeeButton(driver);
 
-		HumanityProfile.clickArrowButton(driver);
-		Thread.sleep(3000);
-		HumanityProfile.clickSettingsLink(driver);
-		HumanityEditStaff.clickUploadPictureButton(driver);
-		HumanityEditStaff.uploadPicture(driver);
-
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		driver.quit();
 	}
+
 }

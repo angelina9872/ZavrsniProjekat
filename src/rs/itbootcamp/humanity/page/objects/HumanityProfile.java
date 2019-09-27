@@ -13,7 +13,7 @@ public class HumanityProfile {
 	public static final String PROFILESETTINGS_URL="https://babicazabica.humanity.com/app/staff/edit/5089486/";
 	private static final String ARROW_BUTTON = "//i[@class='icon icon-arrowFullDn j-arrowIconToAvatar navBottom__userArrow']";
 	private static final String PROFILE_LINK = "//a[contains(text(),'Profile')]";
-	private static final String SETTINGS_LINK = "//body/table/tbody/tr/td/div/div[1]/a[2]";
+	private static final String SETTINGS_LINK = "//div[@class='userm userm-mainPage']//a[contains(text(),'Settings')]";
 	private static final String AVAILABILITY_LINK = "//div[@class='userm userm-mainPage']//a[contains(text(),'Availability')]";
 	private static final String SIGNOUT_LINK = "//a[contains(text(),'Sign Out')]";
 	private static final String VERSION = "//div[@id='humanityAppVersion']";
@@ -30,9 +30,7 @@ public class HumanityProfile {
 	public static Select getProfileOptions(WebDriver driver) {
 		return new Select(driver.findElement(By.xpath(ARROW_BUTTON)));
 	}
-//	public static void clickProfileOption(WebDriver driver) {
-//		((WebElement) getProfileOptions(driver)).click();
-//	}
+
 
 	public static void clickProfileOptions(WebDriver driver,String data) {
 		getProfileOptions(driver).selectByVisibleText(data);

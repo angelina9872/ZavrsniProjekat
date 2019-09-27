@@ -1,11 +1,8 @@
 package rs.itbootcamp.humanity.page.objects;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HumanityHome {
 //	predstavlja POM Object klasu za stranicu www.humanity.com 
@@ -114,20 +111,18 @@ public class HumanityHome {
 	public static void clickLoginButton(WebDriver driver) {
 		getLoginButton(driver).click();
 	}
-//	public static void Login() throws InterruptedException {
-//		// Open home page
-//		WebDriver driver = new ChromeDriver();
-//		driver.manage().window().maximize();
-//		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-//		driver.get("https://www.humanity.com/");
-//		// Login
-//		HumanityHome.clickLogIn(driver);
-//		HumanityHome.clickUsernameBox(driver);
-//		HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
-//		HumanityHome.clickPasswordBox(driver);
-//		HumanityHome.inputPassword(driver, "Sifra123");
-//		HumanityHome.clickLoginButton(driver);
-//		Thread.sleep(3000);
-//	}
-//
-}
+	public static void login(WebDriver driver) throws InterruptedException {
+		// Open home page
+		driver.get("https://www.humanity.com/");
+		// Login
+		HumanityHome.clickLogIn(driver);
+		HumanityHome.clickUsernameBox(driver);
+		HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
+		HumanityHome.clickPasswordBox(driver);
+		HumanityHome.inputPassword(driver, "Sifra123");
+		HumanityHome.clickLoginButton(driver);
+		Thread.sleep(3000);
+	}
+	
+	}
+

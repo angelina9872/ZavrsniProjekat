@@ -1,9 +1,9 @@
 package rs.itbootcamp.humanity.page.objects;
 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HumanityStaff {
 //	HumanityStaff - predstavlja POM Object klasu za stranicu vasafirma.humanity.com/app/staff/list/load/true/

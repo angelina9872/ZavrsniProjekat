@@ -12,33 +12,25 @@ import rs.itbootcamp.humanity.page.objects.HumanitySettings;
 public class HumanitySettingsTests {
 
 	public static void settingsTest() throws InterruptedException {
-		// Open home page
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.get("https://www.humanity.com/");
-		// Login
-		HumanityHome.clickLogIn(driver);
-		HumanityHome.clickUsernameBox(driver);
-		HumanityHome.inputUsername(driver, "gavagibi@web-inc.net");
-		HumanityHome.clickPasswordBox(driver);
-		HumanityHome.inputPassword(driver, "Sifra123");
-		HumanityHome.clickLoginButton(driver);
-		Thread.sleep(3000);
 		try {
+			WebDriver driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			HumanityHome.login(driver);
 			// Open settings page
 			HumanityMenu.clickSettingsButton(driver);
 			// Test country,language and time format
 			HumanitySettings.inputCountry(driver, "Serbia");
-			HumanitySettings.inputLanguage(driver, "Serbian (machine)");
+			HumanitySettings.inputLanguage(driver, "American English");
 			HumanitySettings.inputTimeFormat(driver, "24 hour");
 
 			HumanitySettings.clickSaveSettingsButton(driver);
-			System.out.println("Settings updated successfully");
+			System.out.println("Settings updated successfully.");
+			driver.quit();
 
 		} catch (Exception ae) {
 			System.out.println(ae.getMessage());
 		}
-		driver.quit();
+
 	}
 }
